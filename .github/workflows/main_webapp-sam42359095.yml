@@ -25,13 +25,13 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o C:\Allfiles\Labs\13\Starter\webapp-sam-lab13
+        run: dotnet publish -c Release -o ${{env.GITHUB_WORKSPACE}}\myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: C:\Allfiles\Labs\13\Starter\webapp-sam-lab13/myapp
+          path: ${{env.GITHUB_WORKSPACE}}\myapp
 
   deploy:
     runs-on: windows-latest
